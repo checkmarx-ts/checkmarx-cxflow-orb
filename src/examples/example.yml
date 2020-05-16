@@ -12,5 +12,5 @@ usage:
             team: "\\CxServer\\SP\\Checkmarx"
             preset: "Checkmarx Express"
             report-file: checkmarx.json
-      - store_artifacts:
-          path: checkmarx.json
+        - store_artifacts:
+            path: checkmarx.json
