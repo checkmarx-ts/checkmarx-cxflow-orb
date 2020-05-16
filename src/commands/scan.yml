@@ -1,5 +1,5 @@
 description: >
-  Command is used to trigger scans to Checkmarx and publish results in in Json format or using a desired 
+  Command is used to trigger scans to Checkmarx and publish results in in Json format or using a desired
   bug tracker supported by CxFlow
 parameters:
   checkmarx-url:
@@ -25,11 +25,11 @@ parameters:
   app:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
-    description: "Select an Application Name used by downstream bug tracker systems"  
+    description: "Select an Application Name used by downstream bug tracker systems"
   filters:
     type: string
     default: "--filter-severity=High --filter-severity=Medium --filter-severity=Low"
-    description: "Select report filter criteria"  
+    description: "Select report filter criteria"
   bug-tracker:
     type: string
     default: "Json"
@@ -37,15 +37,15 @@ parameters:
   break:
     type: boolean
     default: false
-    description: "Break build based on Checkmarx findings?"  
+    description: "Break build based on Checkmarx findings?"
   incremental:
     type: boolean
     default: true
-    description: "Incremental Scans?"  
+    description: "Incremental Scans?"
   scan-timeout:
     type: integer
     default: 120
-    description: "Maximum time to wait for a scan to complete (in minutes)"      
+    description: "Maximum time to wait for a scan to complete (in minutes)"
   params:
     type: string
     default: ""
@@ -53,11 +53,11 @@ parameters:
   report-folder:
     type: string
     default: "./"
-    description: "Folder to save report" 
+    description: "Folder to save report"
   report-file:
     type: string
     default: "cx.json"
-    description: "Report filename" 
+    description: "Report filename"
 steps:
   - run:
       name: Checkmarx Scan
