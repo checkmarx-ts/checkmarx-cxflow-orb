@@ -2,8 +2,11 @@ version: 2.1
 
 description: >
   Checkmarx CxFlow orb for executing Checkmarx Scans and Publishing results
-
 # This information will be displayed in the orb registry and is not mandatory.
+# Required Environment Variables: 
+# CHECKMARX_USERNAME
+# CHECKMARX_PASSWORD
+# CHECKMARX_URL
 display:
   home_url: "https://github.com/checkmarx-ltd/cx-flow/wiki"
   source_url: "https://github.com/checkmarx-ltd/cx-flow"

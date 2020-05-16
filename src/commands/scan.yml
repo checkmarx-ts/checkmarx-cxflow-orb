@@ -1,8 +1,6 @@
-# How to author commands: https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands
 description: >
-  Replace this text with a description for this command.
-  # What will this command do?
-  # Descriptions should be short, simple, and clear.
+  Command is used to trigger scans to Checkmarx and publish results in in Json format or using a desired 
+  bug tracker supported by CxFlow
 parameters:
   checkmarx-url:
     type: string
@@ -23,11 +21,15 @@ parameters:
   scan-configuration:
     type: string
     default: "Default Configuration"
-    description: "Select a Scan Configuration"
+    description: "Select a Scan Engine Configuration"
   app:
     type: string
-    default: ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}
-    description: "Select an Application Name reference"  
+    default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
+    description: "Select an Application Name used by downstream bug tracker systems"  
+  filters:
+    type: string
+    default: "--filter-severity=High --filter-severity=Medium --filter-severity=Low"
+    description: "Select report filter criteria"  
   bug-tracker:
     type: string
     default: "Json"
@@ -43,11 +45,19 @@ parameters:
   scan-timeout:
     type: integer
     default: 120
-    description: "Additional CLI parameters"      
+    description: "Maximum time to wait for a scan to complete (in minutes)"      
   params:
     type: string
     default: ""
-    description: "Additional CLI parameters"      
+    description: "Additional CLI parameters"
+  report-folder:
+    type: string
+    default: "./"
+    description: "Folder to save report" 
+  report-file:
+    type: string
+    default: "cx.json"
+    description: "Report filename" 
 steps:
   - run:
       name: Checkmarx Scan
@@ -60,13 +70,13 @@ steps:
         --f=. \
         --cx-flow.bug-tracker=parameters.bug-tracker \
         --cx-flow.bug-tracker-impl=parameters.bug-tracker \
-        --cx-flow.severity=XXXX \
-        --checkmarx.url=parameters.checkmarx-url/cxrestapi \
-        --checkmarx.portal-url=parameters.checkmarx-url/cxwebinterface/Portal/CxWebService.asmx \
-        --checkmarx.incremental=parameters.incremental \ 
-        --checkmarx.scan-preset=parameters.preset \
-        --checkmarx.configuration=parameters.scan-configuration \
-        --checkmarx.scan-timeout=parameters.scan-timeout \
-        parameters.additional
-#CHECKMARX_USERNAME
-#CHECKMARX_PASSWORD
+        << parameters.filters >> \
+        --checkmarx.url=<< parameters.checkmarx-url >>/cxrestapi \
+        --checkmarx.portal-url=<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx \
+        --checkmarx.incremental=<< parameters.incremental >> \ 
+        --checkmarx.scan-preset=<< parameters.preset >> \
+        --checkmarx.configuration=<< parameters.scan-configuration >> \
+        --checkmarx.scan-timeout=<< parameters.scan-timeout >> \
+        --json.file-name-format=<< parameters.report-file >> \
+        --json.data-folder=<< parameters.report-folder >> \
+        << parameters.additional >>
