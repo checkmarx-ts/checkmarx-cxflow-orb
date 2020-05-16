@@ -8,7 +8,7 @@ parameters:
     description: "Provide Checkmarx URL"
   team:
     type: string
-    default: "\CxServer\SP\Company"
+    default: "\\CxServer\\SP\\Company"
     description: "Select a Checkmarx Team"
   project:
     type: string
@@ -73,7 +73,7 @@ steps:
         << parameters.filters >> \
         --checkmarx.url=<< parameters.checkmarx-url >>/cxrestapi \
         --checkmarx.portal-url=<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx \
-        --checkmarx.incremental=<< parameters.incremental >> \ 
+        --checkmarx.incremental=<< parameters.incremental >> \
         --checkmarx.scan-preset=<< parameters.preset >> \
         --checkmarx.configuration=<< parameters.scan-configuration >> \
         --checkmarx.scan-timeout=<< parameters.scan-timeout >> \

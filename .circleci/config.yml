@@ -85,7 +85,7 @@ workflows:
 
           add-pr-comment: true
           bot-token-variable: GH_BOT_USER_TOKEN
-          bot-user: 
+          bot-user:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:

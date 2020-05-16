@@ -9,7 +9,7 @@ usage:
       steps:
         - checkout
         - cxflow/scan:
-            team: "\CxServer\SP\Checkmarx"
+            team: "\\CxServer\\SP\\Checkmarx"
             preset: "Checkmarx Express"
             report-file: checkmarx.json
       - store_artifacts:
