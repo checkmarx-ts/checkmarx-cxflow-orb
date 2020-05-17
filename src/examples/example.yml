@@ -5,13 +5,23 @@ usage:
   orbs:
     cxflow: checkmarx-ts/cxflow@1.0.0
   jobs:
-    build:
+    cx-scan:
       executor: cxflow/default
       steps:
         - checkout
         - cxflow/scan:
             team: "\\CxServer\\SP\\Checkmarx"
             preset: "Checkmarx Express"
+            report-file: checkmarx.json
+        - store_artifacts:
+            path: checkmarx.json
+    cx-results:
+      executor: cxflow/default
+      steps:
+        - checkout
+        - cxflow/results:
+            team: "\\CxServer\\SP\\Checkmarx"
+            project: "Riches"
             report-file: checkmarx.json
         - store_artifacts:
             path: checkmarx.json

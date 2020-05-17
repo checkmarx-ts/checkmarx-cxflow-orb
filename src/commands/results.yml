@@ -1,5 +1,5 @@
 description: >
-  Command is used to trigger scans to Checkmarx and publish results in in Json format or using a desired
+  Command is used to retrieve the latest Checkmarx scan results and publish results in in Json format or using a desired
   bug tracker supported by CxFlow
 parameters:
   checkmarx-url:
@@ -14,14 +14,6 @@ parameters:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
     description: "Select a Checkmarx Project"
-  preset:
-    type: string
-    default: "Checkmarx Express"
-    description: "Select a Checkmarx Preset"
-  scan-configuration:
-    type: string
-    default: "Default Configuration"
-    description: "Select a Scan Engine Configuration"
   app:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
@@ -38,14 +30,6 @@ parameters:
     type: boolean
     default: false
     description: "Break build based on Checkmarx findings?"
-  incremental:
-    type: boolean
-    default: true
-    description: "Incremental Scans?"
-  scan-timeout:
-    type: integer
-    default: 120
-    description: "Maximum time to wait for a scan to complete (in minutes)"
   params:
     type: string
     default: ""
@@ -60,23 +44,18 @@ parameters:
     description: "Report filename"
 steps:
   - run:
-      name: Checkmarx Scan
+      name: Checkmarx Results
       command: |
         java -jar /app/cx-flow.jar \
-        --scan \
+        --project \
         --cx-team="<< parameters.team >>" \
         --cx-project="<< parameters.project >>" \
         --app="<< parameters.app >>" \
-        --f=. \
         --cx-flow.bug-tracker="<< parameters.bug-tracker >>" \
         --cx-flow.bug-tracker-impl="<< parameters.bug-tracker >>" \
         << parameters.filters >> \
         --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \
         --checkmarx.portal-url="<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx" \
-        --checkmarx.incremental=<< parameters.incremental >> \
-        --checkmarx.scan-preset="<< parameters.preset >>" \
-        --checkmarx.configuration="<< parameters.scan-configuration >>" \
-        --checkmarx.scan-timeout=<< parameters.scan-timeout >> \
         --json.file-name-format="<< parameters.report-file >>" \
         --json.data-folder="<< parameters.report-folder >>" \
         << parameters.params >>
