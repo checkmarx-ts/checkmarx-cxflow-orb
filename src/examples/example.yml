@@ -6,6 +6,7 @@ usage:
     cxflow: checkmarx-ts/cxflow@1.0.0
   jobs:
     build:
+      executor: cxflow/default
       steps:
         - checkout
         - cxflow/scan:
