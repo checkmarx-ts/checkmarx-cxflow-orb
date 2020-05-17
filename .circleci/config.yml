@@ -17,7 +17,7 @@ workflows:
           orb-name: checkmarx-ts/cxflow
           requires: [orb-tools/pack]
       - orb-tools/publish:
-          orb-ref: checkmarx-ts/cxflow@1.0.1
+          orb-ref: checkmarx-ts/cxflow@1.0.3
           attach-workspace: true
           requires: [orb-tools/publish-dev]
           filters:
