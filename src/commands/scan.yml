@@ -74,7 +74,7 @@ steps:
         --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \
         --checkmarx.portal-url="<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx" \
         --checkmarx.incremental=<< parameters.incremental >> \
-        --checkmarx.scan-preset="<< parameters.preset >>"" \
+        --checkmarx.scan-preset="<< parameters.preset >>" \
         --checkmarx.configuration="<< parameters.scan-configuration >>" \
         --checkmarx.scan-timeout=<< parameters.scan-timeout >> \
         --json.file-name-format="<< parameters.report-file >>" \
