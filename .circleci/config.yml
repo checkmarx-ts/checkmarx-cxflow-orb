@@ -6,17 +6,17 @@ orbs:
 workflows:
   publish-dev:
     jobs:
+      - orb-tools/lint
       - orb-tools/pack:
           source-dir: src
           destination-orb-path: orb.yml
           workspace-path: orb.yml
           artifact-path: orb.yml
+          requires: [orb-tools/lint]
       - orb-tools/publish-dev:
-          context: Publishing Orb
           orb-name: checkmarx-ts/cxflow
           requires: [orb-tools/pack]
       - orb-tools/publish:
-          context: Publishing Orb
           orb-ref: checkmarx-ts/cxflow@1.0.1
           attach-workspace: true
           filters:
