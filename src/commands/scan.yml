@@ -64,12 +64,12 @@ steps:
       command: |
         java -jar /app/cx-flow.jar \
         --scan \
-        --cx-team="parameters.team" \
-        --cx-project="parameters.project" \
-        --app="parameters.app" \
+        --cx-team="<< parameters.team >>" \
+        --cx-project="<< parameters.project >>" \
+        --app="<< parameters.app >>" \
         --f=. \
-        --cx-flow.bug-tracker=parameters.bug-tracker \
-        --cx-flow.bug-tracker-impl=parameters.bug-tracker \
+        --cx-flow.bug-tracker=<< parameters.bug-tracker >> \
+        --cx-flow.bug-tracker-impl=<< parameters.bug-tracker >> \
         << parameters.filters >> \
         --checkmarx.url=<< parameters.checkmarx-url >>/cxrestapi \
         --checkmarx.portal-url=<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx \
