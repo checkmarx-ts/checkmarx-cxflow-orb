@@ -19,7 +19,7 @@ workflows:
       - orb-tools/publish:
           orb-ref: checkmarx-ts/cxflow@1.0.1
           attach-workspace: true
-          requires: [orb-tools/publish-dev]          
+          requires: [orb-tools/publish-dev]
           filters:
             branches:
               only: master
