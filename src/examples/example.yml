@@ -1,14 +1,17 @@
 description: >
-  Sample example description.
-  # What will this example document?
-  # Descriptions should be short, simple, and clear.
+  Checkout code and run Checkmarx Scan and store the report as an artifact
 usage:
   version: 2.1
   orbs:
-    foo: bar/foo@1.2.3
+    cxflow: checkmarx-ts/cxflow@1.0.0
   jobs:
     build:
-      machine: true
+      executor: cxflow/default
       steps:
-        - foo/hello:
-            username: "Anna"
+        - checkout
+        - cxflow/scan:
+            team: "\\CxServer\\SP\\Checkmarx"
+            preset: "Checkmarx Express"
+            report-file: checkmarx.json
+        - store_artifacts:
+            path: checkmarx.json
