@@ -55,7 +55,7 @@ executor:
   name: default
   tag: << parameters.version >>
 
-steps:  
+steps:
   - checkout
   - results:
       team: << parameters.team >>
