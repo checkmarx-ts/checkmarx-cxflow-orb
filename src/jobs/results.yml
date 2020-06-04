@@ -1,0 +1,66 @@
+description: >
+  Job to retrieve the latest Checkmarx scan results and publish results in in Json format or using a desired
+  bug tracker supported by CxFlow
+parameters:
+  checkmarx-url:
+    type: string
+    default: "${CHECKMARX_URL}"
+    description: "Provide Checkmarx URL"
+  team:
+    type: string
+    default: "\\CxServer\\SP\\Company"
+    description: "Select a Checkmarx Team"
+  project:
+    type: string
+    default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
+    description: "Select a Checkmarx Project"
+  app:
+    type: string
+    default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
+    description: "Select an Application Name used by downstream bug tracker systems"
+  filters:
+    type: string
+    default: "--filter-severity=High --filter-severity=Medium --filter-severity=Low"
+    description: "Select report filter criteria"
+  bug-tracker:
+    type: string
+    default: "Json"
+    description: "Select a proper bug tracker"
+  break:
+    type: boolean
+    default: false
+    description: "Break build based on Checkmarx findings?"
+  params:
+    type: string
+    default: ""
+    description: "Additional CLI parameters"
+  report-folder:
+    type: string
+    default: "./"
+    description: "Folder to save report"
+  report-file:
+    type: string
+    default: "cx.json"
+    description: "Report filename"
+
+executor:
+  name: default
+  tag: << parameters.version >>
+
+steps:
+  steps:
+    - checkout
+    - results:
+      team: "<< parameters.team >>"
+      project: "<< parameters.project >>"
+      version: << parameters.version >>
+      auth-scopes: "<< parameters.auth-scopes >>"
+      app: "<< parameters.app >>"
+      bug-tracker: "<< parameters.bug-tracker >>"
+      filters: << parameters.filters >>
+      checkmarx-url: << parameters.checkmarx-url >>
+      report-folder: "<< parameters.report-folder >>"
+      report-file: "<< parameters.report-file >>"
+      params: << parameters.params >>
+    - store_artifacts:
+        path: "<< parameters.report-file >>"

@@ -1,0 +1,94 @@
+description: >
+  Job to trigger scans of current code base to Checkmarx and publish results in in Json format or using a desired
+  bug tracker supported by CxFlow
+parameters:
+  checkmarx-url:
+    type: string
+    default: "${CHECKMARX_URL}"
+    description: "Provide Checkmarx URL"
+  team:
+    type: string
+    default: "\\CxServer\\SP\\Company"
+    description: "Select a Checkmarx Team"
+  version:
+    type: integer
+    default: 8.9
+    description: "Select a Checkmarx version"
+  auth-scopes:
+    type: string
+    default: "sast_rest_api"
+    description: "Checkmarx Access Control Scopes"
+  project:
+    type: string
+    default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
+    description: "Select a Checkmarx Project"
+  preset:
+    type: string
+    default: "Checkmarx Express"
+    description: "Select a Checkmarx Preset"
+  scan-configuration:
+    type: string
+    default: "Default Configuration"
+    description: "Select a Scan Engine Configuration"
+  app:
+    type: string
+    default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
+    description: "Select an Application Name used by downstream bug tracker systems"
+  filters:
+    type: string
+    default: "--filter-severity=High --filter-severity=Medium --filter-severity=Low"
+    description: "Select report filter criteria"
+  bug-tracker:
+    type: string
+    default: "Json"
+    description: "Select a proper bug tracker"
+  break:
+    type: boolean
+    default: false
+    description: "Break build based on Checkmarx findings?"
+  incremental:
+    type: boolean
+    default: true
+    description: "Incremental Scans?"
+  scan-timeout:
+    type: integer
+    default: 120
+    description: "Maximum time to wait for a scan to complete (in minutes)"
+  params:
+    type: string
+    default: ""
+    description: "Additional CLI parameters"
+  report-folder:
+    type: string
+    default: "./"
+    description: "Folder to save report"
+  report-file:
+    type: string
+    default: "cx.json"
+    description: "Report filename"
+
+executor:
+  name: default
+  tag: << parameters.version >>
+
+steps:
+  - checkout
+  - scan:
+    team: "<< parameters.team >>"
+    project: "<< parameters.project >>"
+    preset: "<< parameters.preset >>"
+    version: << parameters.version >>
+    auth-scopes: "<< parameters.auth-scopes >>"
+    app: "<< parameters.app >>"
+    bug-tracker: "<< parameters.bug-tracker >>"
+    filters: << parameters.filters >>
+    checkmarx-url: << parameters.checkmarx-url >>
+    incremental: << parameters.incremental >>
+    scan-configuration: "<< parameters.scan-configuration >>"
+    scan-timeout: << parameters.scan-timeout >>
+    report-folder: "<< parameters.report-folder >>"
+    report-file: "<< parameters.report-file >>"
+    params: << parameters.params >>
+  - store_artifacts:
+      path: "<< parameters.report-file >>"
+
