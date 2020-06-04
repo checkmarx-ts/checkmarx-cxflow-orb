@@ -1,11 +1,11 @@
 description: >
-  This is a sample executor using CxFlow TS Docker image.
+  Select version of CxFlow to use.  Any available tag from this list can be used: https://hub.docker.com/r/checkmarx/cx-flow/tags
 docker:
-  - image: 'checkmarxts/cxflow:<<parameters.tag>>'
+  - image: 'checkmarx/cx-flow:<<parameters.tag>>'
 parameters:
   tag:
     default: latest
     description: >
-      Pick a specific checkmarx/cxflow image variant:
-      https://hub.docker.com/r/checkmarxts/cxflow/tags
+      Pick a specific checkmarx/cx-flow image variant:
+      https://hub.docker.com/r/checkmarx/cx-flow/tags
     type: string
