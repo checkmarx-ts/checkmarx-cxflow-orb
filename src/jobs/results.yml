@@ -2,6 +2,10 @@ description: >
   Job to retrieve the latest Checkmarx scan results and publish results in in Json format or using a desired
   bug tracker supported by CxFlow
 parameters:
+  tag:
+    type: string
+    default: "latest"
+    description: "Select a Checkmarx version"
   checkmarx-url:
     type: string
     default: "${CHECKMARX_URL}"
@@ -53,7 +57,7 @@ parameters:
 
 executor:
   name: default
-  tag: << parameters.version >>
+  tag: << parameters.tag >>
 
 steps:
   - checkout
