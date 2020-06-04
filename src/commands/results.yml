@@ -10,6 +10,14 @@ parameters:
     type: string
     default: "\\CxServer\\SP\\Company"
     description: "Select a Checkmarx Team"
+  version:
+    type: integer
+    default: 8.9
+    description: "Select a Checkmarx version"
+  auth-scopes:
+    type: string
+    default: "sast_rest_api"
+    description: "Checkmarx Access Control Scopes"
   project:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
@@ -54,6 +62,8 @@ steps:
         --cx-flow.bug-tracker="<< parameters.bug-tracker >>" \
         --cx-flow.bug-tracker-impl="<< parameters.bug-tracker >>" \
         << parameters.filters >> \
+        --checkmarx.version=<< parameters.version >> \
+        --checkmarx.scope="<< parameters.auth-scopes >>" \
         --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \
         --checkmarx.portal-url="<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx" \
         --json.file-name-format="<< parameters.report-file >>" \
