@@ -15,7 +15,7 @@ usage:
             report-file: checkmarx-results.json
         - store_artifacts:
             path: checkmarx-results.json
-            
+        
   workflows:
     version: 2
     sast-results:
