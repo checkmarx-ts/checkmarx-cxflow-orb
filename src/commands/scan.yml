@@ -34,7 +34,7 @@ parameters:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
     description: "Select an Application Name used by downstream bug tracker systems"
-  filters:
+  apply-filters:
     type: string
     default: "--filter-severity=High --filter-severity=Medium --filter-severity=Low"
     description: "Select report filter criteria"
@@ -78,7 +78,7 @@ steps:
         --f=. \
         --cx-flow.bug-tracker="<< parameters.bug-tracker >>" \
         --cx-flow.bug-tracker-impl="<< parameters.bug-tracker >>" \
-        << parameters.filters >> \
+        << parameters.apply-filters >> \
         --checkmarx.version=<< parameters.version >> \
         --checkmarx.scope="<< parameters.auth-scopes >>" \
         --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \

@@ -34,7 +34,7 @@ parameters:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
     description: "Select an Application Name used by downstream bug tracker systems"
-  filters:
+  apply-filters:
     type: string
     default: "--filter-severity=High --filter-severity=Medium --filter-severity=Low"
     description: "Select report filter criteria"
@@ -81,7 +81,7 @@ steps:
       auth-scopes: << parameters.auth-scopes >>
       app: << parameters.app >>
       bug-tracker: << parameters.bug-tracker >>
-      filters: << parameters.filters >>
+      apply-filters: << parameters.apply-filters >>
       checkmarx-url: << parameters.checkmarx-url >>
       incremental: << parameters.incremental >>
       scan-configuration: << parameters.scan-configuration >>
