@@ -10,6 +10,14 @@ parameters:
     type: string
     default: "\\CxServer\\SP\\Company"
     description: "Select a Checkmarx Team"
+  version:
+    type: string
+    default: "8.9"
+    description: "Select a Checkmarx version"
+  auth-scopes:
+    type: string
+    default: "sast_rest_api"
+    description: "Checkmarx Access Control Scopes"
   project:
     type: string
     default: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}"
