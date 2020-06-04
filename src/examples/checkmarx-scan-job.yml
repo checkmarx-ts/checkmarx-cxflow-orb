@@ -10,10 +10,10 @@ usage:
     sast-scan:
       jobs:
         - cxflow/scan:
-          project: CxProject
-          team: "\\CxServer\\SP\\Checkmarx"
-          preset: "Checkmarx Express"
-          report-file: vulns.json
+            project: CxProject
+            team: "\\CxServer\\SP\\Checkmarx"
+            preset: "Checkmarx Express"
+            report-file: vulns.json
             filters:
               branches:
                 only:
