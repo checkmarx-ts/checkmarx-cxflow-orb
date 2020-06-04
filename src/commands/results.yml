@@ -11,7 +11,7 @@ parameters:
     default: "\\CxServer\\SP\\Company"
     description: "Select a Checkmarx Team"
   version:
-    type: integer
+    type: double
     default: 8.9
     description: "Select a Checkmarx version"
   auth-scopes:
