@@ -1,0 +1,19 @@
+description: >
+  Checkout code and run Checkmarx Scan and store the report as an artifact
+usage:
+  version: 2.1
+  orbs:
+    cxflow: checkmarx-ts/cxflow@1.0.4
+
+  workflows:
+    version: 2
+    sast-scan:
+      jobs:
+        - cxflow/results:
+            project: CxProject
+            team: "\\CxServer\\SP\\Checkmarx"
+            report-file: vulns.json
+            filters:
+              branches:
+                only:
+                  - master

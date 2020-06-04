@@ -1,7 +1,11 @@
 description: >
-  Command is used to retrieve the latest Checkmarx scan results and publish results in in Json format or using a desired
+  Job to retrieve the latest Checkmarx scan results and publish results in in Json format or using a desired
   bug tracker supported by CxFlow
 parameters:
+  tag:
+    type: string
+    default: "latest"
+    description: "Select a Checkmarx version"
   checkmarx-url:
     type: string
     default: "${CHECKMARX_URL}"
@@ -50,22 +54,24 @@ parameters:
     type: string
     default: "cx.json"
     description: "Report filename"
+
+executor:
+  name: default
+  tag: << parameters.tag >>
+
 steps:
-  - run:
-      name: Checkmarx Results
-      command: |
-        java -jar /app/cx-flow.jar \
-        --project \
-        --cx-team="<< parameters.team >>" \
-        --cx-project="<< parameters.project >>" \
-        --app="<< parameters.app >>" \
-        --cx-flow.bug-tracker="<< parameters.bug-tracker >>" \
-        --cx-flow.bug-tracker-impl="<< parameters.bug-tracker >>" \
-        << parameters.apply-filters >> \
-        --checkmarx.version=<< parameters.version >> \
-        --checkmarx.scope="<< parameters.auth-scopes >>" \
-        --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \
-        --checkmarx.portal-url="<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx" \
-        --json.file-name-format="<< parameters.report-file >>" \
-        --json.data-folder="<< parameters.report-folder >>" \
-        << parameters.params >>
+  - checkout
+  - results:
+      team: << parameters.team >>
+      project: << parameters.project >>
+      version: << parameters.version >>
+      auth-scopes: << parameters.auth-scopes >>
+      app: << parameters.app >>
+      bug-tracker: << parameters.bug-tracker >>
+      apply-filters: << parameters.apply-filters >>
+      checkmarx-url: << parameters.checkmarx-url >>
+      report-folder: << parameters.report-folder >>
+      report-file: << parameters.report-file >>
+      params: << parameters.params >>
+  - store_artifacts:
+      path: << parameters.report-file >>

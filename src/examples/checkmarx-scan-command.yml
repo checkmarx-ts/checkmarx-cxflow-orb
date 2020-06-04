@@ -1,0 +1,27 @@
+description: >
+  Checkout code, run Checkmarx Scan, wait for results and store a Json Vulnerability report as an artifact
+usage:
+  version: 2.1
+  orbs:
+    cxflow: checkmarx-ts/cxflow@1.0.4
+
+  jobs:
+    cx-scan:
+      executor: cxflow/default
+      steps:
+        - checkout
+        - cxflow/scan:
+            team: "\\CxServer\\SP\\Checkmarx"
+            preset: "Checkmarx Express"
+            report-file: checkmarx.json
+        - store_artifacts:
+            path: checkmarx.json
+
+  workflows:
+    version: 2
+    sast-scan:
+      jobs:
+        - cx-scan:
+            filters:
+              branches:
+                only: master

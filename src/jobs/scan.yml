@@ -1,7 +1,11 @@
 description: >
-  Command is used to trigger scans to Checkmarx and publish results in in Json format or using a desired
+  Job to trigger scans of current code base to Checkmarx and publish results in in Json format or using a desired
   bug tracker supported by CxFlow
 parameters:
+  tag:
+    type: string
+    default: "latest"
+    description: "Select a Checkmarx version"
   checkmarx-url:
     type: string
     default: "${CHECKMARX_URL}"
@@ -66,27 +70,28 @@ parameters:
     type: string
     default: "cx.json"
     description: "Report filename"
+
+executor:
+  name: default
+  tag: << parameters.tag >>
+
 steps:
-  - run:
-      name: Checkmarx Scan
-      command: |
-        java -jar /app/cx-flow.jar \
-        --scan \
-        --cx-team="<< parameters.team >>" \
-        --cx-project="<< parameters.project >>" \
-        --app="<< parameters.app >>" \
-        --f=. \
-        --cx-flow.bug-tracker="<< parameters.bug-tracker >>" \
-        --cx-flow.bug-tracker-impl="<< parameters.bug-tracker >>" \
-        << parameters.apply-filters >> \
-        --checkmarx.version=<< parameters.version >> \
-        --checkmarx.scope="<< parameters.auth-scopes >>" \
-        --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \
-        --checkmarx.portal-url="<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx" \
-        --checkmarx.incremental=<< parameters.incremental >> \
-        --checkmarx.scan-preset="<< parameters.preset >>" \
-        --checkmarx.configuration="<< parameters.scan-configuration >>" \
-        --checkmarx.scan-timeout=<< parameters.scan-timeout >> \
-        --json.file-name-format="<< parameters.report-file >>" \
-        --json.data-folder="<< parameters.report-folder >>" \
-        << parameters.params >>
+  - checkout
+  - scan:
+      team: << parameters.team >>
+      project: << parameters.project >>
+      preset: << parameters.preset >>
+      version: << parameters.version >>
+      auth-scopes: << parameters.auth-scopes >>
+      app: << parameters.app >>
+      bug-tracker: << parameters.bug-tracker >>
+      apply-filters: << parameters.apply-filters >>
+      checkmarx-url: << parameters.checkmarx-url >>
+      incremental: << parameters.incremental >>
+      scan-configuration: << parameters.scan-configuration >>
+      scan-timeout: << parameters.scan-timeout >>
+      report-folder: << parameters.report-folder >>
+      report-file: << parameters.report-file >>
+      params: << parameters.params >>
+  - store_artifacts:
+      path: << parameters.report-file >>

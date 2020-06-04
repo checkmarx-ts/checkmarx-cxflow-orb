@@ -1,20 +1,19 @@
-# cxflow Orb [![CircleCI Build Status](https://circleci.com/gh/checkmarx-ts/checkmarx-cxflow-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/checkmarx-ts/checkmarx-cxflow-orb) [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/checkmarx-ts/cxflow)](https://circleci.com/orbs/registry/orb/checkmarx-ts/cxflow) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/checkmarx-ts/checkmarx-cxflow-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+# Checkmarx CxFlow Orb [![CircleCI Build Status](https://circleci.com/gh/checkmarx-ts/checkmarx-cxflow-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/checkmarx-ts/checkmarx-cxflow-orb) [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/checkmarx-ts/cxflow)](https://circleci.com/orbs/registry/orb/checkmarx-ts/cxflow) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/checkmarx-ts/checkmarx-cxflow-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
-A description of your orb. Utilize this orb to easily add X to your CI/CD pipeline.
+A CircleCI Orb to simplify Checkmarx Scanning of source code along with Result consumption leveraging Checkmarx CxFlow solution.
 
-**TODO:**
-Publish your production orb! You may notice the badges above and links to the registry page below are not working yet, once you publish your first production version orb, these will begin to function.
 
-What to do:
-* Make changes to your `Alpha` branch.
-* Flush out your integration test jobs
-* Merge to `master` with "`[semver:major]`" in the commit subject to publish 1.0.0 of your orb.
-
+For full usage guidelines, see the [orb registry listing](https://circleci.com/orbs/registry/orb/checkmarx-ts/cxflow)
 
 ## Usage
 
 Example use-cases are provided on the orb [registry page](https://circleci.com/orbs/registry/orb/checkmarx-ts/cxflow#usage-examples). Source for these examples can be found within the `src/examples` directory.
 
+There are 3 required environment variables for CircleCI projects to leverage this Orb.
+    
+    - CHECKMARX_URL: High level dns entry for the Checkmarx Instance including protocol/port (i.e. https://cxsast.example.com)
+    - CHECKMARX_USERNAME: Service Account within Checkmarx that will be used for triggering scans and retrieving results
+    - CHECKMARX_PASSWORD: Password of the Service Account.
 
 ## Resources
 
@@ -25,9 +24,5 @@ Example use-cases are provided on the orb [registry page](https://circleci.com/o
 
 We welcome [issues](https://github.com/checkmarx-ts/checkmarx-cxflow-orb/issues) to and [pull requests](https://github.com/checkmarx-ts/checkmarx-cxflow-orb/pulls) against this repository!
 
-To publish a new production version:
-* Create a PR to the `Alpha` branch with your changes. This will act as a "staging" branch.
-* When ready to publish a new production version, create a PR from `Alpha` to `master`. The Git Subject should include `[semver:patch|minor|release|skip]` to indicate the type of release.
-* On merge, the release will be published to the orb registry automatically.
 
 For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).

@@ -1,0 +1,20 @@
+description: >
+  Retrieve latest results for a given Checkmarx project and store a Json Vulnerability report as an artifact
+usage:
+  version: 2.1
+  orbs:
+    cxflow: checkmarx-ts/cxflow@1.0.4
+
+  workflows:
+    version: 2
+    sast-scan:
+      jobs:
+        - cxflow/scan:
+            project: CxProject
+            team: "\\CxServer\\SP\\Checkmarx"
+            preset: "Checkmarx Express"
+            report-file: vulns.json
+            filters:
+              branches:
+                only:
+                  - master
