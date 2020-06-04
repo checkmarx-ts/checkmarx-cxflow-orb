@@ -51,16 +51,16 @@ steps:
   steps:
     - checkout
     - results:
-      team: "<< parameters.team >>"
-      project: "<< parameters.project >>"
-      version: << parameters.version >>
-      auth-scopes: "<< parameters.auth-scopes >>"
-      app: "<< parameters.app >>"
-      bug-tracker: "<< parameters.bug-tracker >>"
-      filters: << parameters.filters >>
-      checkmarx-url: << parameters.checkmarx-url >>
-      report-folder: "<< parameters.report-folder >>"
-      report-file: "<< parameters.report-file >>"
-      params: << parameters.params >>
+        team: "<< parameters.team >>"
+        project: "<< parameters.project >>"
+        version: << parameters.version >>
+        auth-scopes: "<< parameters.auth-scopes >>"
+        app: "<< parameters.app >>"
+        bug-tracker: "<< parameters.bug-tracker >>"
+        filters: << parameters.filters >>
+        checkmarx-url: << parameters.checkmarx-url >>
+        report-folder: "<< parameters.report-folder >>"
+        report-file: "<< parameters.report-file >>"
+        params: << parameters.params >>
     - store_artifacts:
         path: "<< parameters.report-file >>"

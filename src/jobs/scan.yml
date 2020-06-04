@@ -74,20 +74,20 @@ executor:
 steps:
   - checkout
   - scan:
-    team: "<< parameters.team >>"
-    project: "<< parameters.project >>"
-    preset: "<< parameters.preset >>"
-    version: << parameters.version >>
-    auth-scopes: "<< parameters.auth-scopes >>"
-    app: "<< parameters.app >>"
-    bug-tracker: "<< parameters.bug-tracker >>"
-    filters: << parameters.filters >>
-    checkmarx-url: << parameters.checkmarx-url >>
-    incremental: << parameters.incremental >>
-    scan-configuration: "<< parameters.scan-configuration >>"
-    scan-timeout: << parameters.scan-timeout >>
-    report-folder: "<< parameters.report-folder >>"
-    report-file: "<< parameters.report-file >>"
-    params: << parameters.params >>
+      team: "<< parameters.team >>"
+      project: "<< parameters.project >>"
+      preset: "<< parameters.preset >>"
+      version: << parameters.version >>
+      auth-scopes: "<< parameters.auth-scopes >>"
+      app: "<< parameters.app >>"
+      bug-tracker: "<< parameters.bug-tracker >>"
+      filters: << parameters.filters >>
+      checkmarx-url: << parameters.checkmarx-url >>
+      incremental: << parameters.incremental >>
+      scan-configuration: "<< parameters.scan-configuration >>"
+      scan-timeout: << parameters.scan-timeout >>
+      report-folder: "<< parameters.report-folder >>"
+      report-file: "<< parameters.report-file >>"
+      params: << parameters.params >>
   - store_artifacts:
       path: "<< parameters.report-file >>"
