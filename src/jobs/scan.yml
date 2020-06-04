@@ -91,4 +91,3 @@ steps:
     params: << parameters.params >>
   - store_artifacts:
       path: "<< parameters.report-file >>"
-

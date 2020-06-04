@@ -1,10 +1,10 @@
 version: 2.1
 
 description: >
-  Checkmarx CxFlow orb for executing Checkmarx Scans and Publishing results to various feedback channels.  
+  Checkmarx CxFlow orb for executing Checkmarx Scans and Publishing results to various feedback channels.
     Additional information regarding Checkmarx can be found here: https://checkmarx.atlassian.net/wiki/spaces/KC/overview
     Additional information regarding CxFlow can be found here: https://github.com/checkmarx-ltd/cx-flow
-      
+
   The following Environment Variables must be set within your CircleCI project for this orb to function:
     CHECKMARX_URL: High level dns entry for the Checkmarx Instance including protocol/port (i.e. https://cxsast.example.com)
     CHECKMARX_USERNAME: Service Account within Checkmarx that will be used for triggering scans and retrieving results

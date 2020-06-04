@@ -4,7 +4,7 @@ usage:
   version: 2.1
   orbs:
     cxflow: checkmarx-ts/cxflow@1.0.4
-            
+  
   workflows:
     version: 2
     sast-scan:
