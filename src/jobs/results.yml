@@ -62,7 +62,7 @@ steps:
         team: << parameters.team >>
         project: << parameters.project >>
         version: << parameters.version >>
-        auth-scopes: "<< parameters.auth-scopes >>"
+        auth-scopes: << parameters.auth-scopes >>
         app: << parameters.app >>
         bug-tracker: << parameters.bug-tracker >>
         filters: << parameters.filters >>
