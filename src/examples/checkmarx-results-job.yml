@@ -16,4 +16,4 @@ usage:
             filters:
               branches:
                 only:
-                  - master
+                  - Feature/combine-all-scanners-configuration

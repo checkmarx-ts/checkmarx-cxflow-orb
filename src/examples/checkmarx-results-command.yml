@@ -23,4 +23,4 @@ usage:
         - cx-results:
             filters:
               branches:
-                only: master
+                only: Feature/combine-all-scanners-configuration

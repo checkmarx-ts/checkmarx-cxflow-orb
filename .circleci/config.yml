@@ -22,4 +22,4 @@ workflows:
           requires: [orb-tools/publish-dev]
           filters:
             branches:
-              only: master
+              only: Feature/combine-all-scanners-configuration
