@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    cxflow: checkmarx-ts/cxflow@dev:alpha
+    cxflow: checkmarx-ts/cxflow@dev:alpha1.1
 
   jobs:
     cx-results:
