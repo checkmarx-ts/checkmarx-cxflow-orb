@@ -4,22 +4,33 @@ orbs:
   cxflow: checkmarx-ts/cxflow@1.0.4
 
 workflows:
-  publish-dev:
-    jobs:
-      - orb-tools/lint
-      - orb-tools/pack:
-          source-dir: src
-          destination-orb-path: orb.yml
-          workspace-path: orb.yml
-          artifact-path: orb.yml
-          requires: [orb-tools/lint]
-      - orb-tools/publish-dev:
-          orb-name: checkmarx-ts/cxflow
-          requires: [orb-tools/pack]
-      - orb-tools/publish:
-          orb-ref: checkmarx-ts/cxflow@1.0.4
-          attach-workspace: true
-          requires: [orb-tools/publish-dev]
-          filters:
-            branches:
-              only: Feature/combine-all-scanners-configuration
+  version: 2
+    sast-scan:
+      jobs:
+          - cxflow/scan:
+            project: CxProject
+            team: "\\CxServer\\SP\\Checkmarx"
+            preset: "Checkmarx Express"
+            report-file: vulns.json
+            filters:
+              branches:
+                only:
+                  - Feature/combine-all-scanners-configuration
+
+#      - orb-tools/lint
+#      - orb-tools/pack:
+#          source-dir: src
+#          destination-orb-path: orb.yml
+#          workspace-path: orb.yml
+#          artifact-path: orb.yml
+#          requires: [orb-tools/lint]
+#      - orb-tools/publish-dev:
+#          orb-name: checkmarx-ts/cxflow
+#          requires: [orb-tools/pack]
+#      - orb-tools/publish:
+#          orb-ref: checkmarx-ts/cxflow@1.0.4
+#          attach-workspace: true
+#          requires: [orb-tools/publish-dev]
+#          filters:
+#            branches:
+#              only: Feature/combine-all-scanners-configuration
