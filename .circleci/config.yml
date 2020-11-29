@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   orb-tools: circleci/orb-tools@9
-  cxflow: checkmarx-ltd/cxflow@master:1.6.13
+  cxflow: checkmarx-ts/cxflow@dev:alpha
 
 workflows:
   publish-dev:
@@ -14,10 +14,10 @@ workflows:
           artifact-path: orb.yml
           requires: [orb-tools/lint]
       - orb-tools/publish-dev:
-          orb-name: checkmarx-ltd/cxflow
+          orb-name: checkmarx-ts/cxflow
           requires: [orb-tools/pack]
       - orb-tools/publish:
-          orb-ref: checkmarx-ltd/cxflow@1.6.13
+          orb-ref: checkmarx-ts/cxflow@dev:alpha
           attach-workspace: true
           requires: [orb-tools/publish-dev]
           filters:
