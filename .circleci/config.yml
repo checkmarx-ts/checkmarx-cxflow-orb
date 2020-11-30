@@ -5,17 +5,17 @@ orbs:
 
 workflows:
   version: 2
-    sast-scan:
-      jobs:
-          - cxflow/scan:
-            project: CxProject
-            team: "\\CxServer\\SP\\Checkmarx"
-            preset: "Checkmarx Express"
-            report-file: vulns.json
-            filters:
-              branches:
-                only:
-                  - Feature/combine-all-scanners-configuration
+  sast-scan:
+    jobs:
+      - cxflow/scan:
+          project: CxProject
+          team: "\\CxServer\\SP\\Checkmarx"
+          preset: "Checkmarx Express"
+          report-file: vulns.json
+          filters:
+            branches:
+              only:
+                - Feature/combine-all-scanners-configuration
 
 #      - orb-tools/lint
 #      - orb-tools/pack:
