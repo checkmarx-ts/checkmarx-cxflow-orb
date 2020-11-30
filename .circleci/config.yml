@@ -3,13 +3,22 @@ orbs:
   orb-tools: circleci/orb-tools@9
   cxflow: checkmarx-ts/cxflow@1.0.4
 
+parameters:
+  checkmarx-url: https://ast.dev.checkmarx-ts.com
+  checkmarx_username: jay.nanduri@checkmarx.com
+  checkmarx_password: aqNGC2?C7UKdfK_D
+  team: \CxServer\SP\Checkmarx\JayN
+  version: 8.9
+  project: JayPTestSample
+
+
 workflows:
   version: 2
   sast-scan:
     jobs:
       - cxflow/scan:
-          project: CxProject
-          team: "\\CxServer\\SP\\Checkmarx"
+          project: JayPTestSample
+          team: "\\CxServer\\SP\\Checkmarx\\JayN"
           preset: "Checkmarx Express"
           report-file: vulns.json
           filters:
