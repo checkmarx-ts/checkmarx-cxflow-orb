@@ -50,6 +50,55 @@ parameters:
     type: string
     default: "cx.json"
     description: "Report filename"
+  scanners:
+    type: string
+    default: "sast"
+    description: "Vulnerabiility scanners"
+  sca-appUrl:
+    type: string
+    default: ''
+    description: 'SCA Scan APP URL'
+  sca-apiUrl:
+    type: string
+    default: ''
+    description: 'SCA Scan API URL'
+  sca-accessControlUrl:
+    type: string
+    default: ''
+    description: 'SCA SCAN Access Control URL'
+  ast-apiUrl:
+    type: string
+    default: ''
+    description: 'AST scan API URL'
+  ast-preset:
+    type: string
+    default: 'Checkmarx Default'
+    description: 'Preset for Checkmarx AST Scan'
+  ast-incremental:
+    type: boolean
+    default: false
+    description: 'AST scan incremental?'
+  cxgo-base-url:
+    type: string
+    default: 'https://api.checkmarx.net'
+    description: 'Base URL for CxGo scan'
+  cxgo-portal-url:
+    type: string
+    default: 'https://cloud.checkmarx.net'
+    description: 'Portal URL for CxGo scan'
+  cxgo-multi-tenant:
+    type: boolean
+    default: true
+    description: 'Multi Tenant for CxGo'
+  cxgo-configuration:
+    type: string
+    default: ''
+    description: 'Configuration for CxGo scan'
+  cxgo-scan-preset:
+    type: string
+    default: ''
+    description: 'Scan presets for CxGo'
+
 steps:
   - run:
       name: Checkmarx Results
@@ -59,6 +108,8 @@ steps:
         --cx-team="<< parameters.team >>" \
         --cx-project="<< parameters.project >>" \
         --app="<< parameters.app >>" \
+        --spring.profiles.active="<< parameters.scanners >>" \
+        --cx-flow.enabled-vulnerability-scanners="<< parameters.scanners >>" \
         --cx-flow.bug-tracker="<< parameters.bug-tracker >>" \
         --cx-flow.bug-tracker-impl="<< parameters.bug-tracker >>" \
         << parameters.apply-filters >> \
@@ -66,6 +117,18 @@ steps:
         --checkmarx.scope="<< parameters.auth-scopes >>" \
         --checkmarx.url="<< parameters.checkmarx-url >>/cxrestapi" \
         --checkmarx.portal-url="<< parameters.checkmarx-url >>/cxwebinterface/Portal/CxWebService.asmx" \
+        --sca.appUrl="<< parameters.sca-appUrl >>" \
+        --sca.apiUrl="<< parameters.sca-apiUrl >>" \
+        --sca.accessControlUrl="<< parameters.sca-accessControlUrl >>" \
+        --ast.apiUrl="<< parameters.ast-apiUrl >>" \
+        --ast.preset="<< parameters.ast-preset >>" \
+        --ast.incremental="<< parameters.ast-incremental >>" \
+        --cxgo.team="<< parameters.team >>" \
+        --cxgo.base-url="<< parameters.cxgo-base-url >>" \
+        --cxgo.portal-url="<< parameters.cxgo-portal-url >>" \
+        --cxgo.multi-tenant="<< parameters.cxgo-multi-tenant >>" \
+        --cxgo.configuration="<< parameters.cxgo-configuration >>" \
+        --cxgo.scan-preset="<< parameters.cxgo-scan-preset >>" \
         --json.file-name-format="<< parameters.report-file >>" \
         --json.data-folder="<< parameters.report-folder >>" \
         << parameters.params >>

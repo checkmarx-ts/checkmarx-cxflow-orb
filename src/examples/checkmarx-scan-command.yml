@@ -14,6 +14,23 @@ usage:
             team: "\\CxServer\\SP\\Checkmarx"
             preset: "Checkmarx Express"
             report-file: checkmarx.json
+            scanners: sca,ast,cxgo,sast
+            # Remove the comments before execution
+            # SCA scan parameters
+            sca-appUrl: https://sca.scacheckmarx.com
+            sca-apiUrl: https://api.scacheckmarx.com
+            sca-accessControlUrl: https://platform.checkmarx.net
+            #AST scan parameters
+            ast-apiUrl: "http://cx-ast-testing.dev.checkmarx-ts.com"
+            ast-preset: "Checkmarx Default"
+            ast-incremental: false
+            # CXGO parameters
+            cxgo-base-url: https://api.checkmarx.net
+            cxgo-portal-url: https://cloud.checkmarx.net
+            cxgo-multi-tenant: true
+            cxgo-configuration: "Default Configuration"
+            cxgo-scan-preset: 1,2,3,4,5,9
+
         - store_artifacts:
             path: checkmarx.json
 

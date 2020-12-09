@@ -9,6 +9,13 @@ description: >
     CHECKMARX_URL: High level dns entry for the Checkmarx Instance including protocol/port (i.e. https://cxsast.example.com)
     CHECKMARX_USERNAME: Service Account within Checkmarx that will be used for triggering scans and retrieving results
     CHECKMARX_PASSWORD: Password of the Service Account.
+    CHECKMARX_CLIENT_SECRET: Client secret key associated with your Checkmarx SAST account
+    AST_CLIENT_ID: Service account Client ID for Checkmarx AST
+    AST_CLIENT_SECRET: Client secret key associated with your Checkmarx AST account
+    SCA_USERNAME: Service Account within Checkmarx SCA that will be used for triggering scans and retrieving results
+    SCA_PASSWORD: Password of the Checkmarx SCA Service Account
+    SCA_TENANT: Tenant information of the Checkmarx SCA account
+    CXGO_CLIENT_SECRET: Client secret key associated with your Checkmarx CxGo account
 
 display:
   home_url: "https://www.checkmarx.com"
