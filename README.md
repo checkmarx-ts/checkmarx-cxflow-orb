@@ -9,11 +9,25 @@ For full usage guidelines, see the [orb registry listing](https://circleci.com/o
 
 Example use-cases are provided on the orb [registry page](https://circleci.com/orbs/registry/orb/checkmarx-ts/cxflow#usage-examples). Source for these examples can be found within the `src/examples` directory.
 
-There are 3 required environment variables for CircleCI projects to leverage this Orb.
-    
-    - CHECKMARX_URL: High level dns entry for the Checkmarx Instance including protocol/port (i.e. https://cxsast.example.com)
-    - CHECKMARX_USERNAME: Service Account within Checkmarx that will be used for triggering scans and retrieving results
-    - CHECKMARX_PASSWORD: Password of the Service Account.
+The below are the required environment variables for CircleCI projects to leverage this Orb.
+ 
+### Checkmarx SAST   
+    - CHECKMARX_URL: High level dns entry for the Checkmarx SAST Instance including protocol/port (i.e. https://cxsast.example.com)
+    - CHECKMARX_USERNAME: Service Account within Checkmarx SAST that will be used for triggering scans and retrieving results
+    - CHECKMARX_PASSWORD: Password of the Checkmarx SAST Service Account
+    - CHECKMARX_CLIENT_SECRET: Client secret key associated with your Checkmarx SAST account
+
+### Checkmarx AST
+    - AST_CLIENT_ID: Service account Client ID for Checkmarx AST 
+    - AST_CLIENT_SECRET: Client secret key associated with your Checkmarx AST account
+
+### Checkmarx SCA
+    - SCA_USERNAME: Service Account within Checkmarx SCA that will be used for triggering scans and retrieving results
+    - SCA_PASSWORD: Password of the Checkmarx SCA Service Account
+    - SCA_TENANT: Tenant information of the Checkmarx SCA account
+
+### Checkmarx CxGo
+    - CXGO_CLIENT_SECRET: Client secret key associated with your Checkmarx CxGo account
 
 ## Resources
 
