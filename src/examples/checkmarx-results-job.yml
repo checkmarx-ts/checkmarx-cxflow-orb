@@ -22,6 +22,7 @@ usage:
             #AST scan parameters
             ast-apiUrl: "http://cx-ast-testing.dev.checkmarx-ts.com"
             ast-preset: "Checkmarx Default"
+            ast-webAppUrl: "http://cx-ast-testing.dev.checkmarx-ts.com"
             ast-incremental: false
             # CXGO parameters
             cxgo-base-url: https://api.checkmarx.net

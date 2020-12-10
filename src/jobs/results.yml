@@ -74,6 +74,10 @@ parameters:
     type: string
     default: ''
     description: 'AST scan API URL'
+  ast-webAppUrl:
+    type: string
+    default: ''
+    description: 'AST scan Web App URL'
   ast-preset:
     type: string
     default: 'Checkmarx Default'
@@ -128,6 +132,7 @@ steps:
       ast-apiUrl: << parameters.ast-apiUrl >>
       ast-preset: << parameters.ast-preset >>
       ast-incremental: << parameters.ast-incremental >>
+      ast-webAppUrl: << parameters.ast-webAppUrl >>
       cxgo-base-url: << parameters.cxgo-base-url >>
       cxgo-portal-url: << parameters.cxgo-portal-url >>
       cxgo-multi-tenant: << parameters.cxgo-multi-tenant >>
