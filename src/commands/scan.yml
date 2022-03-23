@@ -12,7 +12,7 @@ parameters:
     description: "Select a Checkmarx Team"
   version:
     type: string
-    default: "8.9"
+    default: "9.4"
     description: "Select a Checkmarx version"
   auth-scopes:
     type: string
