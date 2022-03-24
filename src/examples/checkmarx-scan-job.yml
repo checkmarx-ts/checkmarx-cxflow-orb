@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    cxflow: checkmarx-ts/cxflow@1.0.4
+    cxflow: checkmarx-ts/cxflow@1.0.5
 
   workflows:
     version: 2
