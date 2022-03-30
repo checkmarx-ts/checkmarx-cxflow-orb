@@ -106,6 +106,11 @@ parameters:
     type: string
     default: ''
     description: 'Scan presets for CxGo'
+  no-output-timeout:
+    description: |
+      Use this to configure the no_output_timeout value of the test run
+    type: string
+    default: 10m
 
 executor:
   name: default
@@ -138,5 +143,6 @@ steps:
       cxgo-multi-tenant: << parameters.cxgo-multi-tenant >>
       cxgo-configuration: << parameters.cxgo-configuration >>
       cxgo-scan-preset: << parameters.cxgo-scan-preset >>
+      no-output-timeout: << parameters.no-output-timeout >>
   - store_artifacts:
       path: << parameters.report-file >>

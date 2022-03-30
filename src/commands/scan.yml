@@ -118,6 +118,11 @@ parameters:
     type: string
     default: ''
     description: 'Scan presets for CxGo'
+  no-output-timeout:
+    default: 10m
+    description: |
+        Use this to configure the no_output_timeout value of the test run
+    type: string
 
 steps:
   - run:
@@ -158,3 +163,4 @@ steps:
         --json.file-name-format="<< parameters.report-file >>" \
         --json.data-folder="<< parameters.report-folder >>" \
         << parameters.params >>
+      no_output_timeout: << parameters.no-output-timeout >>
